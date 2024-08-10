@@ -12,19 +12,25 @@ import { MainPage } from "pages/main-page";
 import { routeConfig } from "shared/config/routeConfig";
 import AppRouter from "./providers/router/ui/app-router";
 import { Navbar } from "widgets/navbar";
+import { ThemeSwitcher } from "shared/ui/theme-switcher";
+import { Sidebar } from "widgets/sidebar";
 
 
 
 
 const App = () => {
 
-    const {theme, toggleTheme} = useTheme()
+    const {theme} = useTheme()
 
     return (
         <div className={classNames('app', {}, [theme])}>
+            <Suspense fallback="">
             <Navbar className="normal"/>
-            <AppRouter/>
-            <button onClick={toggleTheme}> Theme </button>
+            <div className="content-page">
+                <Sidebar/>
+                <AppRouter/>
+            </div>
+            </Suspense>
         </div>
     )
 }
