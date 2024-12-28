@@ -6,6 +6,8 @@ module.exports = {
 
         es2021: true,
 
+        jest: true,
+
     },
 
     extends: [
@@ -13,6 +15,8 @@ module.exports = {
         'plugin:react/recommended',
 
         'airbnb',
+
+        'plugin:i18next/recommended',
 
     ],
 
@@ -38,6 +42,8 @@ module.exports = {
 
         '@typescript-eslint',
 
+        'i18next',
+
     ],
 
     rules: {
@@ -48,6 +54,7 @@ module.exports = {
 
         indent: [2, 4],
 
+        // eslint-disable-next-line max-len
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
 
         'import/no-unresolved': 'off',
@@ -73,6 +80,10 @@ module.exports = {
         'no-underscore-dangle': 'off',
 
         'linebreak-style': 0,
+
+        'i18next/no-literal-string': ['error', { markupOnly: true }],
+
+        'max-len': ['error', { ignoreComments: true }],
 
     },
 
