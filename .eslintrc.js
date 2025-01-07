@@ -83,7 +83,9 @@ module.exports = {
 
         'i18next/no-literal-string': ['error', { markupOnly: true }],
 
-        'max-len': ['error', { ignoreComments: true }],
+        'max-len': ['error', { ignoreComments: true, code: 150 }],
+
+        'max-classes-per-file': 20,
 
     },
 

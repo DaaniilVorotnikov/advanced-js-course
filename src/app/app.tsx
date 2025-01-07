@@ -4,7 +4,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import './styles/index.scss';
 import { AboutPageAsync } from 'pages/about-page/ui/about-page.async';
 import { MainPageAsync } from 'pages/main-page/ui/main-page.async';
-import { classNames } from 'helpers/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/theme-provider';
 import { AboutPage } from 'pages/about-page';
 import { MainPage } from 'pages/main-page';

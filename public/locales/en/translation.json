@@ -1,3 +1,6 @@
 {
-    "Язык":"English"
+  "Язык": "English",
+  "Страница не найдена": "Page not found",
+  "Произошла неопределенная ошибка": "Something went wrong",
+  "Перезагрузить страницу": "Reload page"
 }
