@@ -81,7 +81,7 @@ module.exports = {
 
         'linebreak-style': 0,
 
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAttribute: ['data-testid'] }],
 
         'max-len': ['error', { ignoreComments: true, code: 150 }],
 
@@ -94,5 +94,14 @@ module.exports = {
         __IS_DEV__: true,
 
     },
+
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            }
+        }
+    ]
 
 };
