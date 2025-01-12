@@ -1,7 +1,10 @@
 import React, { Suspense, useContext, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 
-import './styles/index.scss';
+import 'app/styles/index.scss';
+import 'app/styles/variables/global.scss';
+import 'app/styles/reset.scss';
+
 import { AboutPageAsync } from 'pages/about-page/ui/about-page.async';
 import { MainPageAsync } from 'pages/main-page/ui/main-page.async';
 import { classNames } from 'shared/lib/classNames/classNames';
