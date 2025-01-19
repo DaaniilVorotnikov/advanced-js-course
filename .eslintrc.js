@@ -54,7 +54,6 @@ module.exports = {
 
         indent: [2, 4],
 
-        // eslint-disable-next-line max-len
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
 
         'import/no-unresolved': 'off',
