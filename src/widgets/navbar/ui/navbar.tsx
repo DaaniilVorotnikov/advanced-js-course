@@ -1,17 +1,44 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/app-link';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import cls from './navbar.module.scss';
+import { Modal } from 'shared/ui/modal/modal';
+import { Button } from 'shared/ui/button';
+import { ThemeButton } from 'shared/ui/button/ui/button';
+import { t } from 'i18next';
 
 interface NavbarProps {
     className?:string;
 }
 
-export const Navbar = ({ className }: NavbarProps) => (
+export const Navbar = ({ className }: NavbarProps) => { 
+    
+    const [isAuthModal, setIsAuthModal] = useState(false);
+
+    const onToggleModal = useCallback( () => {
+        setIsAuthModal((prev) => !prev)
+    }, [isAuthModal])
+
+    return (
     <div className={classNames(cls.navbar, {}, [className])}>
+        <Button 
+            theme={ThemeButton.CLEAR_INVERTED}
+            className={cls.links}
+            onClick={onToggleModal}
+        >
+            {t('Войти')}
+        </Button>
+        <Modal isOpen={isAuthModal} onClose={onToggleModal}>
+            Проясню по теме встречи, у нас есть задачи которые касаются адаптера теми или иными углами нам надо определиться с судьбой этих задач. 
+            У нас в общем-то по аналитике практически всё готово. Надо согласовать эти задачи с тобой и с Ломакой Сергеем. 
+            При этом Сергей говорит про Q.Integration, хотя эти задачи касаются адаптера и соответственно перехода на 
+            Q,Integration только в том, что делают обращение к адаптеру. Короче надо будет решить делаем мы эти задачи или отказываем 
+            по всем правилам соответственно.
+        </Modal>
     </div>
 );
+}
 
 export default Navbar;
 
@@ -46,21 +73,21 @@ export class UiComponent<P = {}> extends React.Component<P & UiComponentProps> {
     cx = (...args: string[]): string => classNameUtils.cx(...args);
 }
 
-export class Button extends UiComponent {
-    constructor(props: any) {
-        super(props);
-    }
+// export class Button extends UiComponent {
+//     constructor(props: any) {
+//         super(props);
+//     }
 
-    render() {
-        const { label, onClick } = this.props;
+//     render() {
+//         const { label, onClick } = this.props;
 
-        return (
-            <button
-                onClick={onClick}
-                className={this.cx('Button')}
-            >
-                {label || this.gettext('Кнопка')}
-            </button>
-        );
-    }
-}
+//         return (
+//             <button
+//                 onClick={onClick}
+//                 className={this.cx('Button')}
+//             >
+//                 {label || this.gettext('Кнопка')}
+//             </button>
+//         );
+//     }
+// }
