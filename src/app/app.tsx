@@ -16,7 +16,6 @@ import { Navbar } from 'widgets/navbar';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
 import { Sidebar } from 'widgets/sidebar';
 import AppRouter from './providers/router/ui/app-router';
-import { Counter } from '../components/counter/counter';
 import { Modal } from 'shared/ui/modal/modal';
 
 const App = () => {
