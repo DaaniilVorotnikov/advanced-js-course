@@ -15,8 +15,8 @@ import { routeConfig } from 'shared/config/routeConfig';
 import { Navbar } from 'widgets/navbar';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
 import { Sidebar } from 'widgets/sidebar';
-import AppRouter from './providers/router/ui/app-router';
 import { Modal } from 'shared/ui/modal/modal';
+import AppRouter from './providers/router/ui/app-router';
 
 const App = () => {
     const { theme } = useTheme();

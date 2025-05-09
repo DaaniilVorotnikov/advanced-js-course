@@ -3,21 +3,20 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-
 i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next) // bind react-i18next to the instance
-  .init({
-    fallbackLng: 'en',
-    debug: __IS_DEV__,
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next) // bind react-i18next to the instance
+    .init({
+        fallbackLng: 'en',
+        debug: __IS_DEV__,
 
-    interpolation: {
-      escapeValue: false, // not needed for react!!
-    },
+        interpolation: {
+            escapeValue: false, // not needed for react!!
+        },
 
-    // react i18next special options (optional)
-    // override if needed - omit if ok with defaults
+        // react i18next special options (optional)
+        // override if needed - omit if ok with defaults
     /*
     react: {
       bindI18n: 'languageChanged',
@@ -28,7 +27,6 @@ i18n
       useSuspense: true,
     }
     */
-  });
-
+    });
 
 export default i18n;

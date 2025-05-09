@@ -1,4 +1,3 @@
-
 export enum BuildMode {
     PROD = 'production',
     DEV = 'development'

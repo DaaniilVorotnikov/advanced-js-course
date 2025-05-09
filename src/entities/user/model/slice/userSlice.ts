@@ -6,8 +6,8 @@ const initialState:UserSchema = {};
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {}
-})
+    reducers: {},
+});
 
 export const { actions: userActions } = userSlice;
 export const { reducer: userReducer } = userSlice;

@@ -2,46 +2,44 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/app-link';
 import { ThemeSwitcher } from 'shared/ui/theme-switcher';
 import React, { useCallback, useState } from 'react';
-import cls from './navbar.module.scss';
 import { Modal } from 'shared/ui/modal/modal';
 import { Button } from 'shared/ui/button';
 import { ThemeButton } from 'shared/ui/button/ui/button';
 import { t } from 'i18next';
 import { LoginModal } from 'features/auth-by-username';
+import cls from './navbar.module.scss';
 
 interface NavbarProps {
     className?:string;
 }
 
-export const Navbar = ({ className }: NavbarProps) => { 
-    
+export const Navbar = ({ className }: NavbarProps) => {
     const [isAuthModal, setIsAuthModal] = useState(false);
 
-    const onCloseModal = useCallback( () => {
-        setIsAuthModal(false)
-    }, [])
+    const onCloseModal = useCallback(() => {
+        setIsAuthModal(false);
+    }, []);
 
-    const onShowModal = useCallback( () => {
-        setIsAuthModal(true)
-    }, [])
-
+    const onShowModal = useCallback(() => {
+        setIsAuthModal(true);
+    }, []);
 
     return (
-    <div className={classNames(cls.navbar, {}, [className])}>
-        <Button 
-            theme={ThemeButton.CLEAR_INVERTED}
-            className={cls.links}
-            onClick={onShowModal}
-        >
-            {t('Войти')}
-        </Button>
-        <LoginModal 
-            isOpen={isAuthModal} 
-            onClose={onCloseModal}
-        />
-    </div>
-);
-}
+        <div className={classNames(cls.navbar, {}, [className])}>
+            <Button
+                theme={ThemeButton.CLEAR_INVERTED}
+                className={cls.links}
+                onClick={onShowModal}
+            >
+                {t('Войти')}
+            </Button>
+            <LoginModal
+                isOpen={isAuthModal}
+                onClose={onCloseModal}
+            />
+        </div>
+    );
+};
 
 export default Navbar;
 

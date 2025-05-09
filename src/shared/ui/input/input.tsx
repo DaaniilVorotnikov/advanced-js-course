@@ -1,12 +1,14 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './input.module.scss'
 import { useTranslation } from 'react-i18next';
-import { InputHTMLAttributes, memo, useEffect, useState } from 'react';
+import {
+    InputHTMLAttributes, memo, useEffect, useState,
+} from 'react';
+import cls from './input.module.scss';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
-interface InputProps extends HTMLInputProps { 
-    className?:string; 
+interface InputProps extends HTMLInputProps {
+    className?:string;
     value?:string;
     autofocus?: boolean;
     onChange?: (value:string) => void;
@@ -21,59 +23,60 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         ...otherProps
-    } = props 
+    } = props;
 
-    const [ isFocused, setFocuse ] = useState(false)
-    const [ caretPosition, setCaretPosition ] = useState(0)
+    const [isFocused, setFocuse] = useState(false);
+    const [caretPosition, setCaretPosition] = useState(0);
 
-    useEffect( () => {
-        if(autofocus){
+    useEffect(() => {
+        if (autofocus) {
             setFocuse(true);
         }
-    }, [autofocus])
+    }, [autofocus]);
 
     const onBlur = () => {
-        setFocuse(false)
-    }
+        setFocuse(false);
+    };
 
     const onFocus = () => {
-        setFocuse(true)
-    }
+        setFocuse(true);
+    };
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value)
-        setCaretPosition(e.target.value.length)
-    }
+        onChange?.(e.target.value);
+        setCaretPosition(e.target.value.length);
+    };
 
     const onSelect = (e:any) => {
-        setCaretPosition(e?.target?.selectionStart || 0)
-    }
+        setCaretPosition(e?.target?.selectionStart || 0);
+    };
 
     return (
         <div className={classNames(cls.inputWrapper, {}, [className])}>
-            {placeholder && 
-            (<div className={cls.placeholder}>
-                {`${placeholder}`}
-            </div>)
-            }
+            {placeholder
+            && (
+                <div className={cls.placeholder}>
+                    {`${placeholder}`}
+                </div>
+            )}
             <div className={cls.caretWrapper}>
-                <input 
-                type={type}
-                onChange={onChangeHandler}
-                value={value}
-                className={cls.input}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onSelect={onSelect}
-                {...otherProps}
+                <input
+                    type={type}
+                    onChange={onChangeHandler}
+                    value={value}
+                    className={cls.input}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onSelect={onSelect}
+                    {...otherProps}
                 />
-              {isFocused && (
-                <span 
-                    className={cls.caret}
-                    style={{left: `${caretPosition * 9}px`}} 
-                />
-              )} 
+                {isFocused && (
+                    <span
+                        className={cls.caret}
+                        style={{ left: `${caretPosition * 9}px` }}
+                    />
+                )}
             </div>
         </div>
-    )
-})
+    );
+});

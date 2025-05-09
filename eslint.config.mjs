@@ -15,7 +15,7 @@ const compat = new FlatCompat({
     allConfig: js.configs.all,
 });
 
-export default [...compat.extends('plugin:react/recommended', 'airbnb'), {
+export default [...compat.extends('plugin:react/recommended', 'airbnb', 'eslint:recommended', 'plugin:@typescript-eslint/recommended'), {
     plugins: {
         react,
         '@typescript-eslint': typescriptEslint,
