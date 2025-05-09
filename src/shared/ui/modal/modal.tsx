@@ -7,6 +7,7 @@ interface ModalProps {
     className?:string; 
     children?:ReactNode;
     isOpen?:boolean;
+    lazy?:boolean;
     onClose?: () => void
 }
 
@@ -17,11 +18,13 @@ export const Modal = (
         className, 
         children, 
         isOpen, 
+        lazy,
         onClose
     }: ModalProps,
 ) => {
 
     const [ isClosing, setIsClosing ] = useState(false)
+    const [ isMounted, setIsMounted ] = useState(false)
     const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
 
@@ -57,20 +60,31 @@ export const Modal = (
         }
     }, [isOpen, onKeyDown])
 
+    useEffect(() => {
+        if(isOpen){
+            setIsMounted(true)
+        }
+    }, [isOpen])
+
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     }
 
-return (
-    <Portal>
-        <div className={classNames(cls.modal, mods, [className])}>
-            <div className={cls.overlay} onClick={closeHandler}>
-                <div className={cls.content} onClick={onContentClick}>
-                    { children }
+    if(lazy && !isMounted) {
+        return null
+    } else {
+        return (
+            <Portal>
+                <div className={classNames(cls.modal, mods, [className])}>
+                    <div className={cls.overlay} onClick={closeHandler}>
+                        <div className={cls.content} onClick={onContentClick}>
+                            { children }
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </Portal>
-)
+            </Portal>
+        )
+    }
+
 }

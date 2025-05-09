@@ -7,6 +7,7 @@ import { Modal } from 'shared/ui/modal/modal';
 import { Button } from 'shared/ui/button';
 import { ThemeButton } from 'shared/ui/button/ui/button';
 import { t } from 'i18next';
+import { LoginModal } from 'features/auth-by-username';
 
 interface NavbarProps {
     className?:string;
@@ -16,26 +17,28 @@ export const Navbar = ({ className }: NavbarProps) => {
     
     const [isAuthModal, setIsAuthModal] = useState(false);
 
-    const onToggleModal = useCallback( () => {
-        setIsAuthModal((prev) => !prev)
-    }, [isAuthModal])
+    const onCloseModal = useCallback( () => {
+        setIsAuthModal(false)
+    }, [])
+
+    const onShowModal = useCallback( () => {
+        setIsAuthModal(true)
+    }, [])
+
 
     return (
     <div className={classNames(cls.navbar, {}, [className])}>
         <Button 
             theme={ThemeButton.CLEAR_INVERTED}
             className={cls.links}
-            onClick={onToggleModal}
+            onClick={onShowModal}
         >
             {t('Войти')}
         </Button>
-        <Modal isOpen={isAuthModal} onClose={onToggleModal}>
-            Проясню по теме встречи, у нас есть задачи которые касаются адаптера теми или иными углами нам надо определиться с судьбой этих задач. 
-            У нас в общем-то по аналитике практически всё готово. Надо согласовать эти задачи с тобой и с Ломакой Сергеем. 
-            При этом Сергей говорит про Q.Integration, хотя эти задачи касаются адаптера и соответственно перехода на 
-            Q,Integration только в том, что делают обращение к адаптеру. Короче надо будет решить делаем мы эти задачи или отказываем 
-            по всем правилам соответственно.
-        </Modal>
+        <LoginModal 
+            isOpen={isAuthModal} 
+            onClose={onCloseModal}
+        />
     </div>
 );
 }
