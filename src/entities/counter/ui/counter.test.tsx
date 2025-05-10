@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { componentRender } from 'shared/config/tests/component-render/component-render';
 import userEvent from '@testing-library/user-event';
-import Counter from './counter';
+import { Counter } from './counter';
 
 describe('Counter', () => {
     test('with only first param', () => {
